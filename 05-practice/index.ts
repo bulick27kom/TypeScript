@@ -1,11 +1,11 @@
 const currRate = "1.05";
 
-const fetchCurr = (response) => {
+const fetchCurr = (response:string) => {
 	const data = JSON.parse(response);
 	return data;
 };
 
-function transferEurToUsd(available, amount, commission) {
+function transferEurToUsd(available: boolean, amount:number, commission:number):void {
 	if (available) {
 		let res = fetchCurr(currRate) * amount * commission;
 		console.log(res);
