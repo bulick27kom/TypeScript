@@ -7,8 +7,9 @@ const userData = {
     },
 };
 
-const userDataTuple: [boolean, number, string] = [true, 40, 'John'];
-//userDataTuple[0] = 'true'
+const userDataTuple: [boolean, number, ...string[]] = [true, 40, 'John', 'Alex', 'Anna'];
+const userDataTuple2: [...boolean[], number, string] = [true,true, 40, 'John'];
+const [birth, data, userName] = userDataTuple;
 
 const createError = (msg: string) => {
     throw new Error(msg);
