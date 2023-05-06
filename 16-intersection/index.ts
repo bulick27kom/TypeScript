@@ -1,5 +1,4 @@
 let msg: 'Hello' = 'Hello';
-
 let msg2: 'Hello' | 'world' = 'Hello';
 
 const port3000: number = 3000;
@@ -7,9 +6,21 @@ const port3001: number = 3001;
 
 type Config = { protocol: 'http' | 'https'; port: 3000 | 3001 };
 
+type Role = { role: string };
+
+type ConfigWithRole = Config & Role;
+
+type StartFunction = (protocol: 'http' | 'https', port: 3000 | 3001) => string;
+
 const serverConfig: Config = {
     protocol: 'https',
     port: 3001,
+};
+
+const serverConfigWithRole: ConfigWithRole = {
+    protocol: 'https',
+    port: 3001,
+    role: 'user',
 };
 
 const backupConfig: Config = {
@@ -17,7 +28,7 @@ const backupConfig: Config = {
     port: 3001,
 };
 
-const startServer: (protocol: 'http' | 'https', port: 3000 | 3001) => string = (
+const startServer: StartFunction = (
     protocol: 'http' | 'https',
     port: 3000 | 3001
 ): 'Server started' => {
