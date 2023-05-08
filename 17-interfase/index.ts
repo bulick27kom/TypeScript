@@ -1,42 +1,63 @@
 type Config = { protocol: 'http' | 'https'; port: 3000 | 3001 };
-
 interface IConfig {
     protocol: 'http' | 'https';
     port: 3000 | 3001;
-    log: (msg:string) => void
+    log: (msg: string) => void;
 }
 
+type Role = { role: string };
 interface IRole {
-  role: string;
+    role: string;
 }
 
-interface IConfigWithRole extends IConfig, IRole{
-//  test: string
+// type Config = {
+//     date: Date;
+// };
+interface IConfig {
+    date: Date;
 }
 
-type StartFunction = (protocol: 'http' | 'https', port: 3000 | 3001, log: Function) => string;
-//type StartServer = (config :Config) => string;
+type ConfigWithRole = Config & Role;
+interface IConfigWithRole extends IConfig, IRole {
+    // extraValue: string;
+}
 
-// const startServer: StartServer = ({protocol, port}: Config):'Server started' => {
-//     console.log(`Server ${protocol}://someserver.com start on ${port} port`);
-//     return 'Server started'
-// }
-
-const serverConfig: StartFunction = (
+const serverConfig: IConfigWithRole = {
     protocol: 'http',
     port: 3000,
-    log: Function =>{
+    role: 'admin',
+    date: new Date(),
+    log: (msg: string): void => {
+        console.log(msg);
+    },
+};
 
-    }
-
+type StartFunction = (
+    protocol: 'http' | 'https',
+    port: 3000 | 3001,
+    // log: Function
+    log: (msg: string) => void
+) => string;
 
 const startServer: StartFunction = (
-    protocol = 'http',
-    port,
-    
-    ): 'Server started' => {
-    console.log(`Server ${protocol}://someserver.com start on ${port} port`);
+    protocol: 'http' | 'https',
+    port: 3000 | 3001,
+    log: (msg: string) => void
+): 'Server started' => {
+    log(`Server ${protocol}://someserver.com start on ${port} port`);
     return 'Server started';
 };
 
-startServer('https', 3001, serverConfig.log);
+startServer('https', 3001, console.log);
+
+startServer(serverConfig.protocol, serverConfig.port, serverConfig.log);
+
+interface Styles {
+    [key: string]: string;
+}
+
+const styles: Styles = {
+    position: 'absolute',
+    top: '20px',
+    left: '50px',
+};
