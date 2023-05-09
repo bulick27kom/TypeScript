@@ -22,7 +22,7 @@ enum TimingFunctionN {
 
 function frame(element: string, dir: Directions, tFunc: TimingFunction): void {
     if (dir === Directions.RIGHT) {
-        console.log(tFunc);
+        console.log(tFunc, dir);
     }
 }
 
