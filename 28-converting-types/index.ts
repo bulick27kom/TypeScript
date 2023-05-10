@@ -53,3 +53,4 @@ function tranformDepartment(department: Department, amount: number): Project {
 
 const mainProjectTransform: Project = tranformDepartment(department, 2000);
 console.log(mainProjectTransform);
+
