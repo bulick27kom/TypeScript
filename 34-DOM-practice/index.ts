@@ -26,7 +26,7 @@ const formData: IFormData = {
 
 function validateFormData(data: IFormData): boolean {
     // Если каждое из свойств объекта data правдиво...
-    if (data.email && data.text && data.title && data.checkbox) {
+    if (Object.values(data).every((value) => value)) {
         return true;
     } else {
         console.log('Please, complete all fields');
