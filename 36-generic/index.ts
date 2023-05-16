@@ -31,6 +31,11 @@ function processingDataTwoTypes<T, S>(data: T, options: S): T {
     return data;
 }
 
+// function processingDataTwoTypes<T, S>(data: T[], options: S): T { //data: T[] - массив
+//   return data;
+// }
+// const rezTmp = processingDataTwoTypes<number, string>([10], 'fast')
+
 const res4 = processingDataTwoTypes<number, string>(10, 'slow');
 
 function processingDataSwitch<T, S>(data: T, options: S): string {
@@ -46,3 +51,34 @@ function processingDataSwitch<T, S>(data: T, options: S): string {
             break;
     }
 }
+
+function processing<T>(data: T): T {
+    return data;
+}
+
+interface IDataSaver {
+    processing: <T>(data: T) => T; // метод оъбекта с дженериком
+
+    //  processing : typeof processing   берем тип из уже объявленой функции
+}
+
+const saver: IDataSaver = {
+    // 1й вариант записи
+    // processing(data) {
+    //     console.log(data);
+    //     return data;
+    // },
+
+    // 2й вариант записи
+    // processing: <T>(data: T) => {
+    //     return data;
+    // },
+
+    // 3й вариант записи
+    processing: (data) => {
+        return data;
+    },
+
+    // 4й вариант
+    // processing: processing,
+};
