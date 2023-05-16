@@ -27,3 +27,22 @@ const somePrintNum: Print<number> = {
     design: 10,
 };
 
+function processingDataTwoTypes<T, S>(data: T, options: S): T {
+    return data;
+}
+
+const res4 = processingDataTwoTypes<number, string>(10, 'slow');
+
+function processingDataSwitch<T, S>(data: T, options: S): string {
+    switch (typeof data) {
+        case 'string':
+            return `data speed ${data}`;
+            break;
+        case 'number':
+            return `${data.toFixed()}, speed: ${options}`;
+            break;
+        default:
+            return 'not valid';
+            break;
+    }
+}
