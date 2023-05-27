@@ -6,7 +6,7 @@ interface ICompanySmall {
 interface ICompany {
     name: string;
     debit: number;
-    departments: IDepartment;
+    departments: IDepartment[];
     management: {
         owner: string;
     };
@@ -48,16 +48,17 @@ const keys2: GoogleKeys = 'debit';
 const bigCompany: ICompany = {
     name: 'Goole',
     debit: 100500,
-    departments: {
+    departments: [{
         depart1: 'dep 1',
         depart2: 'dep 2',
         depart3: 'dep 3',
-    },
+    }],
     management: {
         owner: 'owner',
     },
 };
 
 type CompanyOwnerType = ICompany['management']['owner']
-type CompanyDepartmentsType = ICompany['departments']
+type CompanyDepartmentsType = ICompany['departments'][number]
+type CompanyDepartmentsTypes = ICompany['departments']
 type Test = ICompany[keyof ICompany]
