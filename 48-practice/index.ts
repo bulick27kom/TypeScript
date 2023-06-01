@@ -13,6 +13,7 @@ interface IFtnessClubCenter {
     futureClasses: FutureClassesWithWillStartsAt[];
     currClients: CurrClient[];
     exClients: ExClient[];
+    futureClients: FutureClients[];
 }
 
 type Classes = {
@@ -34,6 +35,8 @@ type CurrClient = {
 type ExClient = Omit<CurrClient, 'timeLeft'> & {
     makeCallFor: Date;
 };
+
+type FutureClients = Omit<CurrClient, 'name'> & { makeCallFor: Date };
 
 const fitnessClubCenter: IFtnessClubCenter = {
     clubName: 'Fitness club Center',
