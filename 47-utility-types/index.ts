@@ -1,6 +1,6 @@
 //interface тоже работает
 type Currencies = {
-    usd: 'usd';
+    usa: 'usa';
     chine: 'chy';
     ukraine: 'uah';
     kz: 'tenge';
@@ -48,7 +48,7 @@ type MyNewAnimation = `${MyAnimation}${Capitalize<DirectionAnimation>}`; // Capi
 //////////////////////////////////////////////////////////////////
 
 type Currencies46 = {
-    usd: 'usd';
+    usa: 'usa';
     chine: 'chy';
     ukraine: 'uah';
     kz: 'tenge';
@@ -59,3 +59,31 @@ type CreateCustomCurr46<T> = {
 };
 
 type CuestCurr46 = CreateCustomCurr46<Currencies>;
+
+////////////// 47 /////////////////////////////
+
+type CurrWithoutUSA = Omit<Currencies, 'usa'>; // исключение
+
+type CurrUSAAndUkrain = Pick<Currencies, 'usa' | 'ukraine'>; //фильтрация по свойству или свойствам
+
+type FadeType = Exclude<MyAnimation, 'swipe'>; // удаление из union type
+type CountriesWithoutUsa = Exclude<keyof Currencies, 'usa'>;
+
+type SwipeType = Extract<MyAnimation, 'swipe'>; // выбор подходящего типа
+
+type PlayersNames = 'alex' | 'john';
+type GameDataCurr = Record<PlayersNames, CuestCurr46>;
+const gameData: GameDataCurr = {
+    alex: {
+        customUsa: 'uuu',
+        customChine: 'qqq',
+        customKz: 'www',
+        customUkraine: 'uuu'
+    },
+    john:{
+        customUsa: 'qwew',
+        customChine: 'qeqcqq',
+        customKz: 'xzc',
+        customUkraine: 'uuzxczu'
+    }
+}
